@@ -28,7 +28,7 @@ public class Spawn : MonoBehaviour
     {
         int randomIndex = Random.Range(0, spawnPrefabs.Length);
 
-        // Verifica si el índice está dentro del rango
+        // Verifica si el ï¿½ndice estï¿½ dentro del rango
         if (randomIndex >= 0 && randomIndex < spawnPrefabs.Length)
         {
             float randomX = Random.Range(-8.5f, 8.5f);
@@ -38,7 +38,7 @@ public class Spawn : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Error: El índice aleatorio está fuera del rango del array.");
+            Debug.LogError("Error: El ï¿½ndice aleatorio estï¿½ fuera del rango del array.");
         }
     }
 }
