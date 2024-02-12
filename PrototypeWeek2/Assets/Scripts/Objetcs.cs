@@ -7,8 +7,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject fresaPrefab;
     public GameObject yunquePrefab;
     public Transform spawnPoint;
-    public float minYSpawn = 7.0f; // Posición en el eje Y desde donde los objetos caen
-    public float maxYSpawn = 10.0f; // Altura máxima en la que aparecerán objetos
+    public float minYSpawn = 7.0f; // Posiciï¿½n en el eje Y desde donde los objetos caen
+    public float maxYSpawn = 10.0f; // Altura mï¿½xima en la que aparecerï¿½n objetos
     public float spawnInterval = 2.0f;
     public float horizontalBoundary = 8.5f;
 
@@ -18,6 +18,7 @@ public class ObjectManager : MonoBehaviour
 
     void Start()
     {
+        ResetGame();
         StartCoroutine(SpawnObjects());
     }
 
@@ -25,7 +26,7 @@ public class ObjectManager : MonoBehaviour
     {
         if (gameOver)
         {
-            // Implementa aquí la lógica para mostrar un panel de fin de juego o reiniciar el juego.
+            // Implementa aquï¿½ la lï¿½gica para mostrar un panel de fin de juego o reiniciar el juego.
         }
     }
 
@@ -51,11 +52,11 @@ public class ObjectManager : MonoBehaviour
         if (!gameOver)
         {
             score += 10;
-            // Actualiza la puntuación en la interfaz de usuario.
-            // Implementa aquí la lógica para mostrar la puntuación en pantalla.
+            // Actualiza la puntuaciï¿½n en la interfaz de usuario.
+            // Implementa aquï¿½ la lï¿½gica para mostrar la puntuaciï¿½n en pantalla.
             if (score >= 100)
             {
-                // Has ganado el juego. Implementa la lógica de victoria aquí.
+                // Has ganado el juego. Implementa la lï¿½gica de victoria aquï¿½.
                 gameOver = true;
             }
         }
@@ -67,13 +68,21 @@ public class ObjectManager : MonoBehaviour
         {
             score -= 10;
             yunquesCollected++;
-            // Actualiza la puntuación en la interfaz de usuario.
-            // Implementa aquí la lógica para mostrar la puntuación en pantalla.
+            // Actualiza la puntuaciï¿½n en la interfaz de usuario.
+            // Implementa aquï¿½ la lï¿½gica para mostrar la puntuaciï¿½n en pantalla.
             if (yunquesCollected >= 3 || score < 0)
             {
-                // Has perdido el juego. Implementa la lógica de derrota aquí.
+                // Has perdido el juego. Implementa la lï¿½gica de derrota aquï¿½.
                 gameOver = true;
             }
         }
     }
+
+    void ResetGame()
+    {
+        score = 0;
+        yunquesCollected = 0;
+        gameOver = false;
+    }
+
 }

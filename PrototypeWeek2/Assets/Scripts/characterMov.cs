@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class characterMov : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public int score = 0;
     public int yunquesCollected = 0;
-    public Text scoreText;
     public float horizontalBoundary = 8.5f;
     public float smoothSpeed = 0.125f;
+    public GameObject botonSalida;
+    public TMP_Text scoreText;
+
+    private int score;
 
     private bool canMove = true; // Nueva: Bandera para controlar si Pululu puede moverse
+
+    void Start() 
+    {
+        botonSalida.gameObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -33,9 +41,9 @@ public class characterMov : MonoBehaviour
     {
         if (other.CompareTag("Object1"))
         {
-            score += 10;
-            UpdateScoreText();
             Destroy(other.gameObject);
+            score++;
+            scoreText.text = score.ToString();
         }
         else if (other.CompareTag("Object2"))
         {
@@ -46,16 +54,9 @@ public class characterMov : MonoBehaviour
             }
             else
             {
-                score -= 20;
-                UpdateScoreText();
                 Destroy(other.gameObject);
             }
         }
-    }
-
-    void UpdateScoreText()
-    {
-        scoreText.text = "Score: " + score;
     }
 
     void GameOver()
@@ -63,6 +64,9 @@ public class characterMov : MonoBehaviour
         Debug.Log("Game Over - 3 yunques recogidos");
         Time.timeScale = 0f;
         canMove = false; // Deshabilita el movimiento de Pululu
-        // Puedes agregar aquí la lógica adicional para mostrar un mensaje o cargar una escena de Game Over
+        // Puedes agregar aquï¿½ la lï¿½gica adicional para mostrar un mensaje o cargar una escena de Game Over
+
+        botonSalida.gameObject.SetActive(true);
+
     }
 }
