@@ -7,10 +7,11 @@ public class Spawn : MonoBehaviour
     public GameObject[] spawnPrefabs;
     public float spawnRate = 2f;
     private float nextSpawnTime = 0f;
+    private bool canSpawn = true; // Variable para controlar si los objetos pueden aparecer o no
 
     private void Update()
     {
-        if (Time.time >= nextSpawnTime)
+        if (canSpawn && Time.time >= nextSpawnTime)
         {
             if (spawnPrefabs.Length > 0)
             {
@@ -28,7 +29,7 @@ public class Spawn : MonoBehaviour
     {
         int randomIndex = Random.Range(0, spawnPrefabs.Length);
 
-        // Verifica si el �ndice est� dentro del rango
+        // Verifica si el índice está dentro del rango
         if (randomIndex >= 0 && randomIndex < spawnPrefabs.Length)
         {
             float randomX = Random.Range(-8.5f, 8.5f);
@@ -38,7 +39,13 @@ public class Spawn : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Error: El �ndice aleatorio est� fuera del rango del array.");
+            Debug.LogError("Error: El índice aleatorio está fuera del rango del array.");
         }
+    }
+
+    public void Restart()
+    {
+        nextSpawnTime = Time.time; // Reinicia el temporizador de aparición
+        canSpawn = true; // Permite que los objetos caigan nuevamente
     }
 }

@@ -12,12 +12,13 @@ public class characterMov : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public GameObject botonSalida;
     public TMP_Text scoreText;
+    public Spawn spawner; // Referencia al script de Spawn
 
     private int score;
 
     private bool canMove = true; // Nueva: Bandera para controlar si Pululu puede moverse
 
-    void Start() 
+    void Start()
     {
         botonSalida.gameObject.SetActive(false);
     }
@@ -64,9 +65,9 @@ public class characterMov : MonoBehaviour
         Debug.Log("Game Over - 3 yunques recogidos");
         Time.timeScale = 0f;
         canMove = false; // Deshabilita el movimiento de Pululu
-        // Puedes agregar aqu� la l�gica adicional para mostrar un mensaje o cargar una escena de Game Over
+        // Puedes agregar aquí la lógica adicional para mostrar un mensaje o cargar una escena de Game Over
 
         botonSalida.gameObject.SetActive(true);
-
+        spawner.Restart(); // Llama a la función Restart en el script de Spawn
     }
 }
